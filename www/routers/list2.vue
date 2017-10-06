@@ -261,7 +261,7 @@
           infinite-scroll-distance="20"
           infinite-scroll-immediate-check="checked">
           <li class="ys_listcon pv15" v-for="item in resultData">
-            <a href="javascript:;" class="supply_box" @click="shadowShow">
+            <a href="javascript:;" class="supply_box" :lpid="item.id" @click="shadowShow">
               <div class="supply_price">
                 <span>{{item.price}}</span> 元/㎡·天
                 <i style="display: block">{{item.max_areas}}㎡</i>
@@ -301,41 +301,41 @@
     <div class="shadow"></div>
     <div class="float-part" id="msg_super_wrap">
       <div class="line-one clearfix">
-        <router-link class="bulid_msg_item" :to="{path:'/build_msg'}">
+        <router-link class="bulid_msg_item" :to="{path:'/build_msg/'+lpid}" >
           <i class="basic_01"></i>
           <span>基本信息</span>
         </router-link>
-        <router-link class="bulid_msg_item" :to="{path:'/elevator_msg'}">
+        <router-link class="bulid_msg_item" :to="{path:'/elevator_msg/'+lpid}">
           <i class="basic_02"></i>
           <span>电梯信息</span>
         </router-link>
-        <router-link class="bulid_msg_item" :to="{path:'/area_msg'}">
+        <router-link class="bulid_msg_item" :to="{path:'/area_msg/'+lpid}">
           <i class="basic_03"></i>
           <span>面积信息</span>
         </router-link>
-        <router-link class="bulid_msg_item" :to="{path:'/households_msg'}">
+        <router-link class="bulid_msg_item" :to="{path:'/bal_households_msg/'+lpid}">
           <i class="basic_04"></i>
           <span>户数信息</span>
         </router-link>
-        <router-link class="bulid_msg_item" :to="{path:'/price_msg'}">
+        <router-link class="bulid_msg_item" :to="{path:'/price_msg/'+lpid}">
           <i class="basic_05"></i>
           <span>价格信息</span>
         </router-link>
-        <router-link class="bulid_msg_item" :to="{path:'/image_msg'}">
+        <router-link class="bulid_msg_item" :to="{path:'/image_msg/'+lpid}">
           <i class="basic_06"></i>
           <span>图片信息</span>
         </router-link>
-        <router-link class="bulid_msg_item" :to="{path:'/rent_msg'}">
+        <router-link class="bulid_msg_item" :to="{path:'/rent_msg/'+lpid}">
           <i class="basic_07"></i>
           <span>租赁部信息</span>
         </router-link>
-        <router-link class="bulid_msg_item" :to="{path:'/property_msg'}">
+        <router-link class="bulid_msg_item" :to="{path:'/property_more_msg/'+lpid}">
           <i class="basic_08"></i>
           <span>物业信息</span>
         </router-link>
       </div>
       <div class="build_bot_msg">
-        <router-link class="bulid_msg_last" :to="{path:'/house_msg'}">
+        <router-link class="bulid_msg_last" :to="{path:'/house_msg/'+lpid}">
           <i></i>
           <span>房源信息</span>
         </router-link>
@@ -372,6 +372,7 @@
 
     data () {
       return {
+        lpid:"",
         districtArray: [],
         pricePArray: [],
         priceTArray: [],
@@ -452,7 +453,7 @@
     },
     methods: {
       init(){
-        axios.defaults.baseURL = 'http://116.62.71.76:8001';
+        axios.defaults.baseURL = this.$api;
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
         this.resetGetData();
         this.getFilters();
@@ -506,7 +507,8 @@
           "foreEndType": 2,
           "code": "90000301"
         }, this_ = this;
-        axios.post('http://yhcms.tunnel.qydev.com/yhcms/web/lpjbxx/getTsbq.do', paraObj)
+        const url = this.$api + "/yhcms/web/lpjbxx/getTsbq.do";
+        axios.post(url, paraObj)
           .then(function (response) {
             this_.districtArray = response.data.data.districts;
             this_.pricePArray = response.data.data.range_unit_prices;
@@ -652,7 +654,8 @@
 
       gRemoteData(paraobj, successcb, errorcb){
         console.info(paraobj);
-        axios.post('http://yhcms.tunnel.qydev.com/yhcms/web/lpjbxx/getZdLpjbxx.do', paraobj)
+        const url = this.$api + "/yhcms/web/lpjbxx/getZdLpjbxx.do";
+        axios.post(url, paraobj)
           .then(function (response) {
             if (typeof successcb === "function") {
               successcb(response)
@@ -672,8 +675,10 @@
         }
       },
 
-      shadowShow(){
+      shadowShow(event){
         $('.shadow').show();
+        const evt = (event || window.event), target = (evt.target || evt.srcElement), href = $(target).parents("a"), lpid=$(href).attr("lpid");
+        this.lpid = lpid;
         $('#msg_super_wrap').animate({
           bottom: 0
         });

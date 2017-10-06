@@ -60,15 +60,15 @@
 </template>
 <script>
   import { Toast } from 'mint-ui'; //toast
+  import { Indicator } from 'mint-ui';
 
   import { MessageBox } from 'mint-ui'; //弹窗
 
   export default {
-    components: {},
-
     data () {
       return {
-        //价格信息
+        zdid: '',
+        zdgzid: '',
         scjqjdj: '', //市场近期成交价 单价
         lssnjdj: '', //历史三年成交价 单价
         scjqjyzj: '', //市场近期成交价 月租金
@@ -76,48 +76,97 @@
       }
     },
     methods: {
-      //保存价格信息
+      getInitData(){
+          const lpid = this.$route.params.lpid;
+          this.zdid = lpid;
+          Indicator.open({
+             text: '',
+             spinnerType: 'fading-circle'
+          });
+          const url = this.$api + "/yhcms/web/lpzdxx/getLpzdJg.do";
+          let that = this;
+          this.$http.post(url, {"parameters":{ "id":lpid},"foreEndType":2,"code":"300000071"}).then((res)=>{
+            Indicator.close()
+            const data = JSON.parse(res.bodyText).data;
+            that.zdgzid = data.zdgzid;
+            that.scjqjdj = data.scjqjdj;
+            that.lssnjdj = data.lssnjdj;
+            that.scjqjyzj = data.scjqjyzj;
+            that.lssnjyzj = data.lssnjyzj;
+          }, (res)=>{
+            Indicator.close()
+          });
+      },
       savePrice(){
         var _this = this;
 
-        if(this.scjqjdj == ''){
+        if(!this.scjqjdj){
           MessageBox('提示', '请输入近期成交价');
           return;
         }
 
-        Toast({
-          message: '保存成功',
-          position: 'bottom'
+        if(!this.lssnjdj){
+          MessageBox('提示', '请输入历史三年成交价单价');
+          return;
+        }
+
+        if(!this.scjqjyzj){
+          MessageBox('提示', '请输入市场近期成交价月租金');
+          return;
+        }
+
+        if(!this.lssnjyzj){
+          MessageBox('提示', '请输入历史三年成交价月租金');
+          return;
+        }
+
+        Indicator.open({
+            text: '保存中...',
+            spinnerType: 'fading-circle'
         });
 
-        setTimeout(function () {
-          _this.$router.push({path:'/list2'});
-        }, 1500);
-
         this.$http.post(
-          this.$api,
+          this.$api + "/yhcms/web/lpzdxx/saveLpzdJg.do",
           {
             "parameters": {
-              "id": this.zdid, //楼盘id
+              "id": this.zdid,
+              "scjqjdj": this.scjqjdj,
+              "lssnjdj": this.lssnjdj,
+              "scjqjyzj": this.scjqjyzj,
+              "lssnjyzj": this.lssnjyzj,
             },
             "foreEndType": 2,
-            "code": "300000074"
+            "code": "300000070"
           }
         ).then(function (res) {
-
           var result = JSON.parse(res.bodyText);
+          Indicator.close();
           if (result.success) {
+            Toast({
+                message: '保存成功',
+                position: 'bottom',
+                duration: 1000
+            });
 
+            setTimeout(function(){
+                _this.$router.push({path:'/list2'});
+            },1000);
           } else {
-            this.$Message.error(res.message);
+            Toast({
+                message: '保存失败: ' + result.message,
+                position: 'bottom'
+            });
           }
         }, function (res) {
-          this.$Message.error('保存失败');
+          Toast({
+              message: '保存失败! 请稍候再试',
+              position: 'bottom'
+          });
         });
       }
     },
     mounted(){
-
+        this.getInitData();
     },
   }
 </script>

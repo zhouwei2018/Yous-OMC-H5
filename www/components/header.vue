@@ -53,7 +53,6 @@
       };
     },
     methods: {
-
       showMenu() {
         this.popupVisible = true;
         var wwd = $("#section").width();

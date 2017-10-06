@@ -274,7 +274,8 @@
     },
     methods: {
       init(){
-        axios.defaults.baseURL = 'http://116.62.71.76:8001';
+        //axios.defaults.baseURL = 'http://116.62.71.76:8001';
+        axios.defaults.baseURL = this.$api;
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
         this.resetGetData();
         this.getFilters();

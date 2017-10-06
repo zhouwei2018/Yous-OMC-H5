@@ -46,6 +46,7 @@
 </template>
 <script>
   import { Toast } from 'mint-ui'; //toast
+  import { Indicator } from 'mint-ui';
 
   import { MessageBox } from 'mint-ui'; //弹窗
 
@@ -63,6 +64,27 @@
       }
     },
     methods: {
+      getInitData(){
+          const lpid = this.$route.params.lpid;
+          this.zdid = lpid;
+          Indicator.open({
+             text: '',
+             spinnerType: 'fading-circle'
+          });
+          const url = this.$api + "/yhcms/web/lpzdxx/getLpzdHsh.do";
+          let that = this;
+          this.$http.post(url, {"parameters":{ "id":lpid},"foreEndType":2,"code":"300000042"}).then((res)=>{
+            Indicator.close()
+            const data = JSON.parse(res.bodyText).data;
+            that.zhsh = data.zhsh;
+            that.kfszhs = data.kfszhs;
+            that.yzzhs = data.yzzhs;
+            that.shyzhs = data.shyzhs;
+
+          }, (res)=>{
+            Indicator.close()
+          });
+      },
       //保存户数信息
       saveHouse(){
         var _this = this;
@@ -72,39 +94,53 @@
           return;
         }
 
-        Toast({
-          message: '保存成功',
-          position: 'bottom'
+        Indicator.open({
+            text: '保存中...',
+            spinnerType: 'fading-circle'
         });
 
-        setTimeout(function () {
-          _this.$router.push({path:'/list2'});
-        }, 1500);
-
         this.$http.post(
-          this.$api,
+          this.$api + "/yhcms/web/lpjbxx/saveLpHs.do",
           {
             "parameters": {
-              "id": this.zdid, //楼盘id
+              "id": this.zdid,
+              "zhsh": this.zhsh,
+              "kfszhs": this.kfszhs,
+              "yzzhs": this.yzzhs,
+              "shyzhs": this.shyzhs
             },
             "foreEndType": 2,
             "code": "300000074"
           }
         ).then(function (res) {
-
           var result = JSON.parse(res.bodyText);
           if (result.success) {
+            Toast({
+                message: '保存成功',
+                position: 'bottom',
+                duration: 1000
+            });
+
+            setTimeout(function(){
+                _this.$router.push({path:'/list2'});
+            },1000);
 
           } else {
-            this.$Message.error(res.message);
+            Toast({
+                message: '保存失败: ' + result.message,
+                position: 'bottom'
+            });
           }
         }, function (res) {
-          this.$Message.error('保存失败');
+          Toast({
+              message: '保存失败! 请稍候再试',
+              position: 'bottom'
+          });
         });
       }
     },
     mounted(){
-
+        this.getInitData();
     },
   }
 </script>

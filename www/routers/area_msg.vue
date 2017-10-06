@@ -50,12 +50,11 @@
 <script>
 
   import { Toast } from 'mint-ui'; //toast
+  import { Indicator } from 'mint-ui';
 
   import { MessageBox } from 'mint-ui'; //弹窗
 
   export default {
-    components: {},
-
     data () {
       return {
         //面积信息
@@ -68,6 +67,28 @@
       }
     },
     methods: {
+
+      getInitData(){
+          const lpid = this.$route.params.lpid;
+          this.zdid = lpid;
+          Indicator.open({
+             text: '',
+             spinnerType: 'fading-circle'
+          });
+          const url = this.$api + "/yhcms/web/lpzdxx/getLpzdMj.do";
+          let that = this;
+          this.$http.post(url, {"parameters":{ "id":lpid},"foreEndType":2,"code":"300000075"}).then((res)=>{
+            Indicator.close()
+            const data = JSON.parse(res.bodyText).data;
+            that.jzmj = data.jzmj;
+            that.yzmj = data.yzmj;
+            that.kfszcmj = data.kfszcmj;
+            that.kzmj = data.kzmj;
+            that.dcmj = data.dcmj;
+          }, (res)=>{
+            Indicator.close()
+          });
+      },
       //保存面积信息
       saveAreaMsg(){
         var _this = this;
@@ -77,17 +98,13 @@
           return;
         }
 
-        Toast({
-          message: '保存成功',
-          position: 'bottom'
+        Indicator.open({
+            text: '保存中...',
+            spinnerType: 'fading-circle'
         });
 
-        setTimeout(function () {
-          _this.$router.push({path:'/list2'});
-        }, 1500);
-
         this.$http.post(
-          this.$api,
+          this.$api + "/yhcms/web/lpjbxx/saveLpMj.do",
           {
             "parameters": {
               "id": this.zdid, //楼盘id
@@ -96,20 +113,35 @@
             "code": "300000074"
           }
         ).then(function (res) {
-
+          Indicator.close();
           var result = JSON.parse(res.bodyText);
           if (result.success) {
+            Toast({
+                message: '保存成功',
+                position: 'bottom',
+                duration: 1000
+            });
+
+            setTimeout(function(){
+                _this.$router.push({path:'/list2'});
+            },1000);
 
           } else {
-            this.$Message.error(res.message);
+            Toast({
+                message: '保存失败: ' + result.message,
+                position: 'bottom'
+            });
           }
         }, function (res) {
-          this.$Message.error('保存失败');
+          Toast({
+              message: '保存失败! 请稍候再试',
+              position: 'bottom'
+          });
         });
       }
     },
     mounted(){
-
+        this.getInitData();
     },
   }
 </script>

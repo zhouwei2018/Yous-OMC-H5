@@ -11,8 +11,8 @@ import search from './routers/search.vue';
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(MintUI);
-Vue.prototype.$api = "http://116.62.71.76:8001/api/GetServiceApiResult" //api地址
-Vue.prototype.$resouceUrl = "http://localhost:8081/"  //资源文件地址
+Vue.prototype.$api = "http://192.168.0.143:8081" //api地址
+//Vue.prototype.$resouceUrl = "http://localhost:8081/"  //资源文件地址
 Vue.config.debug = true;// 开启debug模式
 
 var router = new VueRouter({
@@ -55,7 +55,7 @@ var router = new VueRouter({
       component: require('./routers/login.vue')
     },
     {
-      path: '/build_msg', //楼盘基础信息
+      path: '/build_msg/:lpid', //楼盘基础信息
       component: require('./routers/build_msg.vue')
     },
     {
@@ -63,19 +63,19 @@ var router = new VueRouter({
       component: require('./routers/parking_msg.vue')
     },
     {
-      path: '/property_msg', //物业信息
+      path: '/property_msg/:lpid', //物业信息
       component: require('./routers/property_msg.vue')
     },
     {
-      path: '/households_msg', //户数信息
+      path: '/households_msg/:lpid', //户数信息
       component: require('./routers/households_msg.vue')
     },
     {
-      path: '/area_msg', //面积信息
+      path: '/area_msg/:lpid', //面积信息
       component: require('./routers/area_msg.vue')
     },
     {
-      path: '/image_msg', //图片信息
+      path: '/image_msg/:lpid', //图片信息
       component: require('./routers/image_msg.vue')
     },
     {
@@ -87,7 +87,7 @@ var router = new VueRouter({
       component: require('./routers/balcony_msg.vue')
     },
     {
-      path: '/elevator_msg', //电梯信息
+      path: '/elevator_msg/:lpid', //电梯信息
       component: require('./routers/elevator_msg.vue')
     },
     {
@@ -95,15 +95,15 @@ var router = new VueRouter({
       component: require('./routers/area2_msg.vue')
     },
     {
-      path: '/bal_households_msg', //座栋户数信息
+      path: '/bal_households_msg/:lpid', //座栋户数信息
       component: require('./routers/bal_households_msg.vue')
     },
     {
-      path: '/price_msg', //价格信息
+      path: '/price_msg/:lpid', //价格信息
       component: require('./routers/price_msg.vue')
     },
     {
-      path: '/rent_msg', //租赁部信息
+      path: '/rent_msg/:lpid', //租赁部信息
       component: require('./routers/rent_msg.vue')
     },
     {
@@ -111,11 +111,11 @@ var router = new VueRouter({
       component: require('./routers/price_msg.vue')
     },
     {
-      path: '/property_more_msg', //物业2信息
+      path: '/property_more_msg/:lpid', //物业2信息
       component: require('./routers/property_more_msg.vue')
     },
     {
-      path: '/house_msg', //房源基本信息
+      path: '/house_msg/:lpid', //房源基本信息
       component: require('./routers/house_msg.vue')
     },
     {
@@ -131,7 +131,7 @@ var router = new VueRouter({
       component: require('./routers/image_more_msg.vue')
     },
     {
-      path: '/house_analy_msg', //房源分析信息
+      path: '/house_analy_msg/:lpid', //房源分析信息
       component: require('./routers/house_analy_msg.vue')
     },
     {
@@ -188,12 +188,6 @@ var router = new VueRouter({
       path: '/project_order', //工程管理部工单
       component: require('./routers/project_order.vue')
     },
-
-
-
-
-
-
     {
       path: '/order_following', //工單跟進中
       component: require('./routers/order_following.vue')
@@ -238,7 +232,6 @@ var router = new VueRouter({
       path: '/receive_order_detail', //接单详情
       component: require('./routers/receive_order_detail')
     },
-
     {
       path: '/work_list', //业务跟进中列表
       component: require('./routers/work_list.vue')
@@ -247,14 +240,10 @@ var router = new VueRouter({
       path: '/follow_up_record', //跟进记录
       component: require('./routers/follow_up_record')
     },
-
-
     {
       path: '*',
       component: require('./routers/login.vue')
     }
-
-
   ]
 });
 

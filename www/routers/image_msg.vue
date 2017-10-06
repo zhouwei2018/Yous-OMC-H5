@@ -62,7 +62,7 @@
         this.imgList.splice(item,1);
       },
       add_img(event){
-        var reader =new FileReader();
+        var reader = new FileReader();
         var img1=event.target.files[0];
         if (!/\/(?:jpeg|jpg|png)/i.test(img1.type)){
           MessageBox('提示', '请选择图片文件!');

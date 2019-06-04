@@ -1,0 +1,101 @@
+@import "../color.less";
+
+#ys_user {
+  background: url("../../images/login_bg.png") no-repeat center center;
+  background-size: 100% 100%;
+}
+
+.login_box {
+  width: 5.4rem;
+  margin: 0 auto;
+}
+
+.all_wrap{
+  position: absolute;
+  width:100%;
+  height:100%;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+
+.login_wrap {
+  margin-top: 6rem;
+  .inp_item {
+    width: 100%;
+    height:1.4rem;
+    position: relative;
+    .inp_bg{
+      position: absolute;
+      left: 0;
+      top: .15rem;
+      width: 100%;
+      height: 1.5rem;
+      background: url("../../images/icons/user/login_inp01.png") no-repeat  left center;
+      background-size: 5.4rem 2.2rem;
+    }
+    &.login {
+      background: url("../../images/icons/user/login_inp02.png") no-repeat  left center;
+      background-size: 5.4rem 2.4rem;
+    }
+    .ys_icon {
+      width: .34rem;
+      height: .34rem;
+      position: absolute;
+      left: .9rem;
+      top: .75rem;
+      &.user {
+        background: url("../../images/icons/user/user_icon.png") no-repeat;
+        background-size: .3rem .3rem;
+      }
+
+      &.pass {
+        background: url("../../images/icons/user/pass_icon.png") no-repeat;
+        background-size: .3rem .3rem;
+      }
+    }
+    input {
+      height:.8rem;
+      line-height: .8rem;
+      padding-left: 1.45rem;
+      color: @cl_white;
+      font-size: @font30;
+      position: relative;
+      z-index: 1;
+      background-color: rgba(0,0,0,.2);
+      &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: @cl_white;
+      }
+
+      &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: @cl_white;
+      }
+
+      &:-ms-input-placeholder {
+        color: @cl_white;
+      }
+
+      &::-webkit-input-placeholder {
+        color: @cl_white;
+      }
+    }
+  }
+}
+
+.ys_btn {
+  display: block;
+  width: 100%;
+  line-height: 1.2rem;
+  height: 1.2rem;
+  text-align: center;
+  color: @cl_white;
+  font-size: @font32;
+}
+
+@media screen and (min-width: 7.5rem) {
+
+  #ys_user {
+    background-size: cover;
+  }
+}
+

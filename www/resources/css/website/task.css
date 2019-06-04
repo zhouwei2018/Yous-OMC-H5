@@ -1,0 +1,163 @@
+/*文字色*/
+/*黑色*/
+/*白色*/
+/*粉红色*/
+/*蓝色*/
+/*bg色*/
+/*背景默认色*/
+/*浅绿色*/
+/*边线颜色*/
+/*输入框描边*/
+/*hr*/
+/*字号*/
+.task_bg {
+  height: 4.4rem;
+  background: url("../../images/user/user_bg.png") no-repeat;
+  background-size: 100% 100%;
+}
+.task_col_wrap {
+  height: 3.6rem;
+  background-color: #fff;
+  border-radius: .1rem;
+  margin: -1rem 0.2rem 0;
+  padding-top: .4rem;
+}
+.task_col_item {
+  float: left;
+  width: 25%;
+  height: 1.1rem;
+  margin-bottom: .6rem;
+  text-align: center;
+}
+.task_icon {
+  display: inline-block;
+}
+.task_icon.task1 {
+  width: .44rem;
+  height: .59rem;
+  background: url("../../images/user/task01.png") no-repeat;
+  background-size: .44rem .59rem;
+}
+.task_icon.task2 {
+  width: .59rem;
+  height: .58rem;
+  background: url("../../images/user/task02.png") no-repeat;
+  background-size: .59rem .58rem;
+}
+.task_icon.task3 {
+  width: .49rem;
+  height: .48rem;
+  background: url("../../images/user/task03.png") no-repeat;
+  background-size: .49rem .48rem;
+}
+.task_icon.task4 {
+  width: .51rem;
+  height: .51rem;
+  background: url("../../images/user/task04.png") no-repeat;
+  background-size: .51rem .51rem;
+}
+.task_icon.task5 {
+  width: .55rem;
+  height: .54rem;
+  background: url("../../images/user/task05.png") no-repeat;
+  background-size: .55rem .54rem;
+}
+.task_icon.task6 {
+  width: .55rem;
+  height: .52rem;
+  background: url("../../images/user/task06.png") no-repeat;
+  background-size: .55rem .52rem;
+}
+.task_icon.task7 {
+  width: .49rem;
+  height: .49rem;
+  background: url("../../images/user/task07.png") no-repeat;
+  background-size: .49rem .49rem;
+}
+.task_finish_tit {
+  background-color: #fff;
+  line-height: .72rem;
+}
+.task_finish_tit i {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: .2rem;
+  width: .26rem;
+  height: .25rem;
+  background: url("../../images/user/hammer.png") no-repeat;
+  background-size: .26rem .25rem;
+}
+.task_finish_tit span {
+  display: inline-block;
+  vertical-align: middle;
+}
+.rank_res_ul span {
+  margin-left: .6rem;
+}
+.rank_icon {
+  position: absolute;
+  left: .25rem;
+  top: 0;
+  width: .23rem;
+  height: .44rem;
+  font-size: 0.24rem;
+  text-align: center;
+  line-height: .35rem;
+  color: #fff;
+}
+.rank_icon.first {
+  background: url("../../images/user/rank1.png") no-repeat;
+  background-size: .23rem .44rem;
+}
+.rank_icon.second {
+  background: url("../../images/user/rank2.png") no-repeat;
+  background-size: .23rem .44rem;
+}
+.rank_icon.third {
+  background: url("../../images/user/rank3.png") no-repeat;
+  background-size: .23rem .44rem;
+}
+.blue_line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: .05rem;
+  height: .72rem;
+  background-color: #16abdc;
+}
+.rank_num {
+  width: 1.1rem;
+  height: .3rem;
+  margin-top: .2rem;
+  font-size: 0.24rem;
+  color: #fff;
+  line-height: .3rem;
+  border-radius: .15rem 0 0 .15rem;
+  padding-left: .2rem;
+  background-color: #16abdc;
+}
+.ys_task_top {
+  position: fixed;
+  top: .25rem;
+  padding: 0 .4rem;
+  width: 100%;
+}
+.ys_task_top .user_icon {
+  width: .3rem;
+  height: .33rem;
+  background: url("../../images/icons/user_icon.png") no-repeat;
+  background-size: .3rem .33rem;
+}
+.ys_task_top .alarm_icon {
+  width: .3rem;
+  height: .33rem;
+  background: url("../../images/icons/alarm_icon.png") no-repeat;
+  background-size: .3rem .33rem;
+}
+.ys_task_top .alarm_icon .alarm_num {
+  font-size: 0.24rem;
+  color: #f61f3a;
+  float: right;
+  margin-top: -0.12rem;
+  margin-right: -0.15rem;
+}

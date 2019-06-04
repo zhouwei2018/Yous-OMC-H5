@@ -1,0 +1,102 @@
+/*文字色*/
+/*黑色*/
+/*白色*/
+/*粉红色*/
+/*蓝色*/
+/*bg色*/
+/*背景默认色*/
+/*浅绿色*/
+/*边线颜色*/
+/*输入框描边*/
+/*hr*/
+/*字号*/
+#ys_user {
+  background: url("../../images/login_bg.png") no-repeat center center;
+  background-size: 100% 100%;
+}
+.login_box {
+  width: 5.4rem;
+  margin: 0 auto;
+}
+.all_wrap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 99;
+}
+.login_wrap {
+  margin-top: 6rem;
+}
+.login_wrap .inp_item {
+  width: 100%;
+  height: 1.4rem;
+  position: relative;
+}
+.login_wrap .inp_item .inp_bg {
+  position: absolute;
+  left: 0;
+  top: .15rem;
+  width: 100%;
+  height: 1.5rem;
+  background: url("../../images/icons/user/login_inp01.png") no-repeat left center;
+  background-size: 5.4rem 2.2rem;
+}
+.login_wrap .inp_item.login {
+  background: url("../../images/icons/user/login_inp02.png") no-repeat left center;
+  background-size: 5.4rem 2.4rem;
+}
+.login_wrap .inp_item .ys_icon {
+  width: .34rem;
+  height: .34rem;
+  position: absolute;
+  left: .9rem;
+  top: .75rem;
+}
+.login_wrap .inp_item .ys_icon.user {
+  background: url("../../images/icons/user/user_icon.png") no-repeat;
+  background-size: .3rem .3rem;
+}
+.login_wrap .inp_item .ys_icon.pass {
+  background: url("../../images/icons/user/pass_icon.png") no-repeat;
+  background-size: .3rem .3rem;
+}
+.login_wrap .inp_item input {
+  height: .8rem;
+  line-height: .8rem;
+  padding-left: 1.45rem;
+  color: #fff;
+  font-size: 0.3rem;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.login_wrap .inp_item input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #fff;
+}
+.login_wrap .inp_item input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #fff;
+}
+.login_wrap .inp_item input:-ms-input-placeholder {
+  color: #fff;
+}
+.login_wrap .inp_item input::-webkit-input-placeholder {
+  color: #fff;
+}
+.ys_btn {
+  display: block;
+  width: 100%;
+  line-height: 1.2rem;
+  height: 1.2rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.32rem;
+}
+@media screen and (min-width: 7.5rem) {
+  #ys_user {
+    background-size: cover;
+  }
+}

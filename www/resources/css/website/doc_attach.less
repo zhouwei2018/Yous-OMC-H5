@@ -1,0 +1,53 @@
+@import "../color.less";
+
+.com_tab_wrap{
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 110;
+  width:100%;
+  .com_tab_head{
+    >div{
+      width:50%;
+      text-align: center;
+      background-color: @cl_white;
+      height:.72rem;
+      line-height: .72rem;
+    }
+  }
+}
+
+.sort_item_wrap{
+  width:100%;
+  .sort_item{
+    height:.72rem;
+    line-height: .72rem;
+    background-color: @cl_white;
+    padding-left: .25rem;
+    border-bottom: 1px solid @bdc_df;
+  }
+}
+
+.attach_item{
+  line-height: 1.1rem;
+  background-color: @cl_white;
+  padding:0 .25rem;
+  border-bottom: 1px solid @bdc_df;
+  .tr{
+    padding-top: .1rem;
+    line-height: .45rem;
+  }
+}
+
+.red_down_arrow{
+  width:.14rem;
+  height:.08rem;
+  background: url("../../images/icons/red_down_arrow.png") no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  background-size: .14rem .08rem;
+}
+
+.distri_block{
+  line-height: .54rem;
+}

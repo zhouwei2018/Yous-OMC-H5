@@ -38,7 +38,6 @@
          height: .62rem;
          line-height: .50rem;
          margin-left:.40rem;
-         padding-left: .70rem;
          text-align: left;
          background: rgba(255, 255, 255, 0.2);
          background-size:.40rem auto;
@@ -48,13 +47,13 @@
            position: absolute;
            width: .36rem;
            height:.36rem;
-           left: .28rem;
+           right: .28rem;
            top: .1378rem;
             background:url(../resources/images/list/ss_01.png) center center no-repeat;
             background-size: contain;
          }
          input {
-           width: 95%;
+           width: 88%;
            margin-top:.04rem;
            color: #FFF;
            background: none;
@@ -137,8 +136,8 @@
       <div id="s-header">
         <div class="pt07">
           <a href="javascript:void(0);" class="search-text">
-            <i class="sbtn" @click="toList2"></i>
-            <input type="text" id="keyword" placeholder="请输入写字楼、区域、商圈" maxlength="50" v-model="search_keyword" autofocus="autofocus">
+            <input type="text" id="keyword" placeholder="请输入关键字" maxlength="50" v-model.trim="search_keyword" @keyup.enter="doSearch" autofocus="autofocus">
+            <i class="sbtn" @click="doSearch"></i>
           </a>
         </div>
         <a href="javascript:void(0);" class="close-icon" @click="toList">
@@ -232,6 +231,7 @@
   import { Toast } from 'mint-ui';
   import { Actionsheet } from 'mint-ui';
   import { Search } from 'mint-ui';
+  import { MessageBox } from 'mint-ui';
   import axios from 'axios';
   import qs from 'qs';
   export default {
@@ -255,7 +255,8 @@
           {name:"望京soho"},
           {name:"盈科中心"}
         ],
-        resultData: []
+        resultData: [],
+        rt: "",
       }
     },
     created:function(){
@@ -271,6 +272,9 @@
       init(){
         axios.defaults.baseURL = 'http://116.62.71.76:8001';
         axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
+        
+        const rt = this.$route.query.rt;
+        this.rt = !rt || rt === "undefined" ? "" : rt;
       },
       clearHistoty:function(){
            this.historyArray = [];
@@ -281,16 +285,23 @@
            localStorage.setItem("historyData",JSON.stringify(this.hotArray));
       },
       toList:function(){
-        this.$router.push({path: '/list'});
+        this.$router.push({path: '/index'});
       },
       toList2:function(){
         if(this.search_keyword){
              this.changeHistory(this.search_keyword);
         }
-        this.$router.push({path: '/list', query: {keyword: this.search_keyword}});
+        this.$router.push({path: '/index', query: {keyword: this.search_keyword}});
+      },
+      doSearch:function(){
+        if(!this.search_keyword){
+          MessageBox('提示', '请输入关键字!');
+          return;
+        }
+        this.$router.push({path: '/' + this.rt, query: {keyword: this.search_keyword}});
       },
       toListw:function(k){
-        this.$router.push({path: '/list', query: {keyword:k}});
+        this.$router.push({path: '/index', query: {keyword:k}});
       },
       closeFilter:function(){
         this.currentFilterTab='nth';

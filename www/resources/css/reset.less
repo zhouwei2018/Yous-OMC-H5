@@ -1,3 +1,4 @@
+
 /*
  *===============================================
  *@desc  default style reset
@@ -5,7 +6,7 @@
  *@time 2016-06-18
  *===============================================
  */
-@import "color";
+@import "color.less";
 
 html,
 body {
@@ -16,7 +17,7 @@ body {
   height: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-family: "microsoft yahei", arial, verdana, helvetica, sans-serif;
-  background: #f2f2f2;
+  background: @bg_lightgay;
   font-size: 0.28rem;
 }
 
@@ -62,22 +63,17 @@ em {
   font-style: normal;
 }
 
-* {
-  appearance: normal;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: 0;
-  vertical-align: baseline;
-  outline: 0;
-  font-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  -moz-text-size-adjust: none;
-  -ms-text-size-adjust: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+input,textarea,select{
+  border: none;
+  outline: none;
 }
 
 :focus {
   outline: 0
+}
+
+*{
+  box-sizing: border-box;
 }
 
 /*
@@ -229,10 +225,32 @@ header {
   }
 }
 
+.all_elements {
+  position: absolute;
+  overflow-x: hidden !important;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  color: #333;
+  -webkit-overflow-scrolling: touch;
+  /*
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+*/
+}
+
 /*=================针对特殊网站common start=========================*/
 
 a {
   color: @cl_black;
+}
+
+.line_nor{
+  line-height: normal !important;
 }
 
 .bg-white {
@@ -245,6 +263,10 @@ a {
 
 .tc {
   text-align: center !important;
+}
+
+.tr{
+  text-align: right !important;
 }
 
 .pr {
@@ -293,6 +315,14 @@ a {
   margin-right: .1rem !important;
 }
 
+.mr10{
+  margin-right: .2rem !important;
+}
+
+.mr20{
+  margin-right: .4rem !important;
+}
+
 .mt-3 {
   margin-top: -.06rem !important;
 }
@@ -307,6 +337,10 @@ a {
 
 .ml10, .mv10, .ma10 {
   margin-left: .2rem !important;
+}
+
+.ml5{
+  margin-left: .1rem !important;
 }
 
 .pb10, .ph10, .pa10 {
@@ -327,6 +361,10 @@ a {
 
 .pt20, .ph20, .pa20 {
   padding-top: .4rem !important;
+}
+
+.pr10{
+  padding-right: .2rem !important;
 }
 
 .pr15, .pv15, .pa15 {
@@ -383,6 +421,10 @@ a {
 
 .f28 {
   font-size: @font28 !important;
+}
+
+.f30 {
+  font-size: @font30 !important;
 }
 
 .f32 {

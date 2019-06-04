@@ -1,0 +1,57 @@
+/*文字色*/
+/*黑色*/
+/*白色*/
+/*粉红色*/
+/*蓝色*/
+/*bg色*/
+/*背景默认色*/
+/*浅绿色*/
+/*边线颜色*/
+/*输入框描边*/
+/*hr*/
+/*字号*/
+.com_tab_wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 110;
+  width: 100%;
+}
+.com_tab_wrap .com_tab_head > div {
+  width: 50%;
+  text-align: center;
+  background-color: #fff;
+  height: .72rem;
+  line-height: .72rem;
+}
+.sort_item_wrap {
+  width: 100%;
+}
+.sort_item_wrap .sort_item {
+  height: .72rem;
+  line-height: .72rem;
+  background-color: #fff;
+  padding-left: .25rem;
+  border-bottom: 1px solid #dbdadf;
+}
+.attach_item {
+  line-height: 1.1rem;
+  background-color: #fff;
+  padding: 0 .25rem;
+  border-bottom: 1px solid #dbdadf;
+}
+.attach_item .tr {
+  padding-top: .1rem;
+  line-height: .45rem;
+}
+.red_down_arrow {
+  width: .14rem;
+  height: .08rem;
+  background: url("../../images/icons/red_down_arrow.png") no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  background-size: .14rem .08rem;
+}
+.distri_block {
+  line-height: .54rem;
+}
